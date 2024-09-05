@@ -1,0 +1,14 @@
+spring:
+  application:
+   name: jpa_one_to_many
+  datasource:
+    url: jdbc:mysql://localhost:13306/jpa_test
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
