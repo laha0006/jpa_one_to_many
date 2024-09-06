@@ -7,4 +7,5 @@ import java.util.Set;
 
 public interface KommuneRepository extends JpaRepository<Kommune, String> {
     List<Kommune> findAll();
+    List<Kommune> findKommuneByRegionKode(String kode);
 }
