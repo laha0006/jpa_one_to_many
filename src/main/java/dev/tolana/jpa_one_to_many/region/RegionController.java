@@ -4,6 +4,7 @@ package dev.tolana.jpa_one_to_many.region;
 import dev.tolana.jpa_one_to_many.kommune.Kommune;
 import dev.tolana.jpa_one_to_many.kommune.KommuneRepository;
 import dev.tolana.jpa_one_to_many.service.RegionKommuneApiService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,15 @@ public class RegionController {
     private final KommuneRepository kommuneRepository;
     private final RegionKommuneApiService regionKommuneApiService;
 
+    @Transactional
     @GetMapping("/region/{kode}/kommune")
-    public ResponseEntity<List<Kommune>> getKommune(@PathVariable String kode) {
+    public ResponseEntity<Set<Kommune>> getKommune(@PathVariable String kode) {
+        System.out.println("#### GET REGION ####");
         Optional<Region> region = regionRepository.findById(kode);
+        System.out.println("#### AFTER GET REGION ####");
         if (region.isPresent()) {
-            return ResponseEntity.ok(kommuneRepository.findKommuneByRegionKode(kode));
+            return ResponseEntity.ok(region.get().getKommuner());
+//            return ResponseEntity.ok(kommuneRepository.findKommuneByRegionKode(kode));
         } else {
             return ResponseEntity.notFound().build();
         }

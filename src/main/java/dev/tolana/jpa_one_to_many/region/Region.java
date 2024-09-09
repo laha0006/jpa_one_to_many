@@ -19,7 +19,7 @@ public class Region {
     private String navn;
     private String href;
 
-    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonBackReference
     private Set<Kommune> kommuner = new HashSet<>();
 

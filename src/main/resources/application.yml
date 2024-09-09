@@ -3,8 +3,8 @@ spring:
    name: jpa_one_to_many
   datasource:
     url: jdbc:mysql://localhost:13306/jpa_test
-    username: root
-    password: root
+    username: ${DB_U}
+    password: ${DB_P}
   jpa:
     properties:
       hibernate:
@@ -12,3 +12,4 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    open-in-view: true
